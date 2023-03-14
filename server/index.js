@@ -11,6 +11,11 @@ app.use(express.json());
 const host_url = 'http://localhost';
 const port = 3001;
 
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+  res.sendFile(path.join(__dirname,'../client/dist/index.html'));
+});
+
 app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
