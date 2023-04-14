@@ -9,7 +9,7 @@ app.use(express.json());
 
 
 const host_url = 'http://localhost';
-const port = 3001;
+const port = 3004;
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{

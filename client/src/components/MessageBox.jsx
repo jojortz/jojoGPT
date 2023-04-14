@@ -7,9 +7,28 @@ border: 1pt solid red;
 flex: 1 1 auto;
 display: flex;
 flex-direction: column-reverse;
+overflow: scroll;
 `
 const MessageBox = () => {
   let messages = [
+    {text: "a",
+    type: "sent"},
+    {text: "bbbbbb",
+    type: "received"},
+    {text: "ffffff",
+    type: "sent"},
+    {text: "a",
+    type: "sent"},
+    {text: "bbbbbb",
+    type: "received"},
+    {text: "ffffff",
+    type: "sent"},
+    {text: "a",
+    type: "sent"},
+    {text: "bbbbbb",
+    type: "received"},
+    {text: "ffffff",
+    type: "sent"},
     {text: "a",
     type: "sent"},
     {text: "bbbbbb",
