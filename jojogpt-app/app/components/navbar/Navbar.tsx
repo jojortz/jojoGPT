@@ -1,5 +1,6 @@
 import Container from "../Container";
-
+import Logo from "./Logo";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   return (
@@ -8,9 +9,21 @@ const Navbar = () => {
       py-4
       border-b-[1px]
       ">
-<Container>
-  whatever
-</Container>
+        <Container>
+          <div
+            className="
+          flex
+          flex-row
+          items-center
+          justify-between
+          gap-3
+          md: gap-0
+          "
+          >
+            <Logo />
+            <NavLinks/>
+          </div>
+        </Container>
       </div>
     </div>
   );
