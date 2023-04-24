@@ -38,6 +38,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         TOKEN: JSON.stringify(process.env.TOKEN),
+        OPENAI_KEY: JSON.stringify(process.env.OPENAI_KEY)
       },
     }),
   ],
