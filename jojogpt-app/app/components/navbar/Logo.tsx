@@ -18,7 +18,7 @@ const Logo = () => {
         width="50"
         src="/images/logo.png"
       />
-      <div className="hidden sm:block text-gray-800 text-2xl m-auto px-3">jojoGPT</div>
+      <div className="hidden sm:block text-gray-800 text-2xl m-auto px-3">JojoGPT</div>
     </div>
   )
 }

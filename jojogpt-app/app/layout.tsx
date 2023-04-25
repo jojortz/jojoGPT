@@ -2,9 +2,12 @@ import { Nunito } from "next/font/google"
 
 import './globals.css'
 import Navbar from "./components/navbar/Navbar"
+import ClientOnly from "./components/ClientOnly"
+import ToasterProvider from "./providers/ToasterProvider"
+import RegisterModal from "./components/modals/RegisterModal"
 
 export const metadata = {
-  title: 'jojoGPT',
+  title: 'JojoGPT',
   description: 'Text the jojoGPT AI',
 }
 
@@ -20,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <Navbar/>
+        <ClientOnly>
+          <ToasterProvider/>
+          <RegisterModal/>
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>
