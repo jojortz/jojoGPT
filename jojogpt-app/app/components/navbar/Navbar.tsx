@@ -1,6 +1,6 @@
 import Container from "../Container";
 import Logo from "./Logo";
-import NavLinks from "./NavLinks";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   return (
@@ -21,7 +21,7 @@ const Navbar = () => {
           "
           >
             <Logo />
-            <NavLinks/>
+            <UserMenu/>
           </div>
         </Container>
       </div>
