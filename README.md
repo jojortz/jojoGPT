@@ -1,9 +1,9 @@
 <div id="top"/>
 
-# jojoGPT
-Fun app to explore ML. Goal is to create an app that can mimic my messaging, such as texting, emailing, LinkedIn messaging, etc.
+# JojoGPT
+Fun app to explore ML. Goal is to create an app that can mimic my text messaging. So far, I've customized and trained a nanoGPT from Andrej Karpathy on my texts to create a texting bot for myself.
 
-First goal is to train a nanoGPT from Andrej Karpathy on my texts to create a texting bot for myself.
+The output is relatively coherent, which is pretty awesome.
 
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
@@ -26,7 +26,7 @@ TBD
 
 ## Getting Started
 ### Installation
-From the root directory, run the following commands in your terminal:
+From the jojogpt-app directory, run the following commands in your terminal:
 
 #### 1. Install all dependencies
 
@@ -37,16 +37,10 @@ From the root directory, run the following commands in your terminal:
 #### 2. Start the development server.
 
 ```
-  npm run server-dev
+  npm run dev
 ```
 
-In the browser, open http://localhost:3001 or use another port as specified by your PORT environment variable.
-
-#### 3. Build for production
-
-```
-  npm run react-dev
-```
+In the browser, open http://localhost:3000 or use another port as specified by the terminal output.
 ## Contributors
 <a href="https://github.com/jojortz/waave/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jojortz/waave" />
