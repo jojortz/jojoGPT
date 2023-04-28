@@ -27,23 +27,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div
-          onClick={() => { console.log('click') }}
-          className="
-            hidden
-            md:block
-            text-sm
-            font-semibold
-            py-3
-            px-4
-            rounded-full
-            hover:bg-neutral-100
-            transition
-            cursor-pointer
-          "
-        >
-          Airbnb your home
-        </div>
-        <div
           onClick={() => {
             console.log('click2');
             toggleOpen();
@@ -78,7 +61,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             rounded-xl
             shadow-md
             w-[40-vw]
-            md:w-3/4
+            md:w-[150px]
             bg-white
             overflow-hidden
             right-0
