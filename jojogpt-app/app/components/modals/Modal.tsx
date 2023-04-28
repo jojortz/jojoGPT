@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from "react";
-import { IoIosAddCircle, IoMdClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
+
+const transition_ms = 300;
 
 interface ModalProps {
   isOpen?: boolean;

@@ -12,6 +12,7 @@ const Logo = () => {
       flex-row
     ">
       <Image
+        onClick={() => router.push('/')}
         alt="Logo"
         className="block cursor-pointer"
         height="50"
