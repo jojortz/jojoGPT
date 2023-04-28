@@ -18,7 +18,7 @@ model User {
   image          String?
   hashedPassword String?
   createdAt      DateTime  @default(now())
-  updateAt       DateTime  @updatedAt
+  updatedAt       DateTime  @updatedAt
   likeIds        String[]  @db.ObjectId
 
   accounts       Account[]
