@@ -8,14 +8,18 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
+
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -69,13 +73,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
                 <>
-                <MenuItem onClick={() => {}}
+                <MenuItem onClick={() => router.push('/jojoMessage')}
                   label="jojoMessage"
                 />
-                <MenuItem onClick={() => {}}
-                  label="Posts"
+                <MenuItem onClick={() => router.push('/conversations')}
+                  label="Conversations"
                 />
-                <MenuItem onClick={() => {}}
+                <MenuItem onClick={() => router.push('/')}
                   label="About"
                 />
                 <hr/>

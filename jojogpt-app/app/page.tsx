@@ -1,11 +1,16 @@
 import { Inter } from 'next/font/google'
+import ClientOnly from './components/ClientOnly'
+import getCurrentUser from './actions/getCurrentUser'
+import AboutPage from './AboutPage'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default async function Home() {
+  const currentUser = await getCurrentUser();
+
   return (
-    <div>
-      jojoGPT App
-    </div>
+    <ClientOnly>
+      <AboutPage currentUser={currentUser}/>
+    </ClientOnly>
   )
 }
