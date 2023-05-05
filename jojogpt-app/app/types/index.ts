@@ -14,3 +14,10 @@ export type Conversation = {
   title: string;
   messages: string;
 }
+export type ConversationPost = {
+  id: string;
+  title: string;
+  author: string;
+  imgSrc: string;
+  likes: string[];
+}
