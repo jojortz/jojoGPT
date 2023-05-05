@@ -1,10 +1,10 @@
-import getCurrentUser from "../actions/getCurrentUser";
 import Container from "../components/Container"
 import Heading from "../components/Heading";
+import JojoMessageComponent from "../components/jojoMessage/JojoMessageComponent";
 import { SafeUser } from "../types";
 
 interface JojoMessageClientProps {
-  currentUser: SafeUser;
+  currentUser: SafeUser | null;
 }
 
 const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
@@ -12,10 +12,19 @@ const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
 }) => {
   return (
     <Container>
-      <Heading
-        title="jojoMessage"
-        subtitle="Text and create new conversations with jojoGPT"
-      />
+      <div
+        className="
+          flex
+          flex-col
+          h-[80vh]
+        "
+      >
+        <Heading
+          title="jojoMessage"
+          subtitle="Text and create new conversations with jojoGPT"
+        />
+        <JojoMessageComponent currentUser={currentUser} />
+      </div>
     </Container>
   )
 };

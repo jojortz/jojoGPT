@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { EmptyStatement } from "typescript";
 import Heading from "./Heading";
 import Button from "./Button";
 

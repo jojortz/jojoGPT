@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         'theme-main': '#00a8e8',
+        'imessage-blue': '#2294fb',
       },
     },
   },
