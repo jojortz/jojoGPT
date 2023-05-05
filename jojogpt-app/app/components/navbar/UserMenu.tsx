@@ -50,7 +50,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar src={currentUser?.image}/>
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -72,8 +72,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
-                <>
-                <MenuItem onClick={() => router.push('/jojoMessage')}
+              <>
+                <MenuItem onClick={() => {
+                  router.push('/jojoMessage');
+                }}
                   label="jojoMessage"
                 />
                 <MenuItem onClick={() => router.push('/conversations')}
@@ -82,26 +84,37 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => router.push('/')}
                   label="About"
                 />
-                <hr/>
-                <MenuItem onClick={() => signOut()}
+                <hr />
+                <MenuItem onClick={() => {
+                  signOut({
+                    callbackUrl: `${window.location.origin}`
+                  });
+                }}
                   label="Logout"
                 />
               </>
 
-            ): (
-                <>
-            <MenuItem onClick = {loginModal.onOpen}
-            label="Login"
-            />
-            <MenuItem onClick={registerModal.onOpen}
-              label="Sign up"
-            />
-          </>
+            ) : (
+              <>
+                <MenuItem onClick={() => router.push('/conversations')}
+                  label="Conversations"
+                />
+                <MenuItem onClick={() => router.push('/')}
+                  label="About"
+                />
+                <hr />
+                <MenuItem onClick={loginModal.onOpen}
+                  label="Login"
+                />
+                <MenuItem onClick={registerModal.onOpen}
+                  label="Sign up"
+                />
+              </>
             )}
+          </div>
         </div>
-        </div>
-  )
-}
+      )
+      }
     </div >
   )
 };

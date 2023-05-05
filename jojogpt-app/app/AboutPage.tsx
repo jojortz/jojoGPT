@@ -8,6 +8,7 @@ import Button from "./components/Button";
 import useRegisterModal from "./hooks/useRegisterModal";
 import Image from "next/image";
 import Link from "./components/Link";
+import useLoginModal from "./hooks/useLoginModal";
 
 interface AboutPageProps {
   currentUser: SafeUser | null;
@@ -16,7 +17,7 @@ interface AboutPageProps {
 const AboutPage: React.FC<AboutPageProps> = ({
   currentUser
 }) => {
-  const registerModal = useRegisterModal()
+  const loginModal = useLoginModal();
 
   return (
     <Container>
@@ -50,16 +51,14 @@ const AboutPage: React.FC<AboutPageProps> = ({
           by Andrej Karpathy, where he builds a nanoGPT from scratch and trains it on Shakespeare. I decided to follow that tutorial, but to train it on my texting. This is the result.
         </span>
         <span>
-          You can check out the Messaging UI here, but you'll need to login to actually receive messages from JojoGPT.
-        </span>
-        <span>
           To see some fun examples of conversations, check out the Conversations page.
+          Once you've logged in, check out the JojoMessage, page to message JojoGPT.
         </span>
       </div>
       {!currentUser && (
         <Button
-          label="Sign up"
-          onClick={() => { registerModal.onOpen() }}
+          label="Log in"
+          onClick={() => { loginModal.onOpen() }}
         />
       )}
     </Container>
