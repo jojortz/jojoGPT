@@ -1,47 +1,14 @@
+import getConversationPosts from "../actions/getConversationPosts";
+import getCurrentUser from "../actions/getCurrentUser";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ConversationCard from "../components/conversations/ConversationCard";
 import { ConversationPost } from "../types";
 
-const test_conversations_posts: ConversationPost[] = [
-  {
-    id: '1',
-    title: 'wtf',
-    author: 'Jackie',
-    imgSrc: '/images/conversation_placeholder.png',
-    likes: ['Jackie', 'Joey'],
-  },
-  {
-    id: '2',
-    title: 'wtf',
-    author: 'Joey',
-    imgSrc: '/images/conversation_placeholder.png',
-    likes: ['Jackie'],
-  },
-  {
-    id: '3',
-    title: 'wtfffff',
-    author: 'Jason',
-    imgSrc: '/images/conversation_placeholder.png',
-    likes: ['Jason', 'Joey', 'Johnston'],
-  },
-  {
-    id: '4',
-    title: 'wtffffff',
-    author: 'Johnston',
-    imgSrc: '/images/conversation_placeholder.png',
-    likes: ['Jackie'],
-  },
-  {
-    id: '5',
-    title: 'wttttttttttf',
-    author: 'Josiah',
-    imgSrc: '/images/conversation_placeholder.png',
-    likes: ['Jackie', 'Joey', 'Johnston', 'Jason'],
-  },
-]
+const ConversationsClient = async () => {
+  const conversationPosts = getConversationPosts();
+  const currentUser = await getCurrentUser();
 
-const ConversationsClient = () => {
   return (
     <Container>
       <Heading
@@ -62,8 +29,8 @@ const ConversationsClient = () => {
         "
       >
         {
-          test_conversations_posts.map((post) => (
-            <ConversationCard data={post}/>
+          conversationPosts.map((post) => (
+            <ConversationCard data={post} currentUser={currentUser}/>
           ))
         }
       </div>

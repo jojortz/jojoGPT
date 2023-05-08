@@ -7,24 +7,7 @@ import ComposeBar from "./ComposeBar";
 import ConversationsBar from "./ConversationsBar";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import { useEffect } from "react";
-
-const test_conversations: Conversation[] = [
-  {
-    id: '1',
-    title: "Convo1",
-    messages: "FROM:\nHey what's up??"
-  },
-  {
-    id: '2',
-    title: "Convo2",
-    messages: "FROM:\nI'll be home at 8 :)"
-  },
-  {
-    id: '3',
-    title: "Convo3",
-    messages: "FROM:\nThat's a good idea!"
-  },
-]
+import getUserConversations from "@/app/actions/getUserConversations";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
@@ -34,10 +17,11 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
   currentUser
 }) => {
   const userConversations = useUserConversations();
+  const conversations = getUserConversations('1');
 
   useEffect(() => {
-    userConversations.setSelectedConvo(test_conversations[0].id);
-    userConversations.setConversations(test_conversations);
+    userConversations.setSelectedConvo(conversations[0].id);
+    userConversations.setConversations(conversations);
   }, [])
 
   return (

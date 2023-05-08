@@ -20,4 +20,5 @@ export type ConversationPost = {
   author: string;
   imgSrc: string;
   likes: string[];
+  description: string;
 }
