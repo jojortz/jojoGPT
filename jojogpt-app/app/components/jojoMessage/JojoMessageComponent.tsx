@@ -1,6 +1,6 @@
 'use client';
 
-import { Conversation, SafeUser } from "@/app/types";
+import { SafeConversation, SafeUser } from "@/app/types";
 import RecipientsBar from "./RecipientsBar";
 import MessageContainer from "./MessageContainer";
 import ComposeBar from "./ComposeBar";
@@ -8,16 +8,18 @@ import ConversationsBar from "./ConversationsBar";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import { useEffect } from "react";
 import getUserConversations from "@/app/actions/getUserConversations";
+import ConversationModal from "../modals/ConversationModal";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
+  conversations: SafeConversation[];
 }
 
 const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
-  currentUser
+  currentUser,
+  conversations
 }) => {
   const userConversations = useUserConversations();
-  const conversations = getUserConversations('1');
 
   useEffect(() => {
     userConversations.setSelectedConvo(conversations[0].id);
@@ -37,6 +39,7 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
         mt-5
       "
     >
+      <ConversationModal/>
       <div className="hidden sm:block">
         <ConversationsBar />
       </div>

@@ -1,22 +1,35 @@
-import { Conversation } from "../types"
+import prisma from "@/app/libs/prismadb";
 
-export default function getUserConversations(id: string) {
-  const test_conversations: Conversation[] = [
-    {
-      id: '1',
-      title: "Convo1",
-      messages: "FROM:\nHey what's up??"
-    },
-    {
-      id: '2',
-      title: "Convo2",
-      messages: "FROM:\nI'll be home at 8 :)"
-    },
-    {
-      id: '3',
-      title: "Convo3",
-      messages: "FROM:\nThat's a good idea!"
-    },
-  ]
-  return test_conversations
+interface IParams {
+  userId?: string;
+}
+
+export default async function getUserConversations(params: IParams) {
+  try {
+    const {userId } = params;
+    const conversations = await prisma.conversation.findMany({
+      where: {
+        userId: userId
+      },
+      include: {
+        user: true
+      }
+    });
+
+    const safeConversations = conversations.map((conversation) => ({
+      ...conversation,
+      createdAt: conversation.createdAt.toISOString(),
+      updatedAt: conversation.updatedAt.toISOString(),
+      user: {
+        ...conversation.user,
+        createdAt: conversation.user.createdAt.toISOString(),
+        updatedAt: conversation.user.updatedAt.toISOString(),
+        emailVerified: conversation.user.emailVerified?.toISOString() || null,
+      }
+    }));
+
+    return safeConversations;
+  } catch (error: any) {
+    throw new Error(error)
+  }
 }

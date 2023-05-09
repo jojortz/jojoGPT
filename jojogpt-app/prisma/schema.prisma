@@ -23,6 +23,7 @@ model User {
 
   accounts       Account[]
   posts          Post[]
+  conversations  Conversation[]
 }
 
 model Account {
@@ -55,4 +56,25 @@ model Post {
   userId        String   @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Conversation {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime  @updatedAt
+  userId        String   @db.ObjectId
+  messages      Message[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  sent           Boolean
+  body           String
+  conversationId String @db.ObjectId
+  createdAt      DateTime @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 }

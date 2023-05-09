@@ -18,7 +18,7 @@ const ConversationsBar = () => {
       <ConversationsHeader/>
       {
         userConversations.conversations.map((item) => (
-          <ConversationTab id={item.id} title={item.title} selected={userConversations.selectedConvo === item.id}/>
+          <ConversationTab id={item.id} key={item.id} title={item.title} selected={userConversations.selectedConvo === item.id}/>
         ))
       }
     </div>
