@@ -6,24 +6,28 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useUserConversations from "@/app/hooks/useUserConversations";
+import useMessages from "@/app/hooks/useMessages";
 
 const ComposeBar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const userConversations = useUserConversations();
+  const { selectedConvo, conversations, setConversations } = useUserConversations();
+  const { messages, setMessages } = useMessages();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     data = {
       ...data,
-      conversationId: userConversations.selectedConvo
+      conversationId: selectedConvo
     }
-    console.log('message data', data)
 
     axios.post('/api/messages', data)
-    .then(() => {
-      toast.success('Message Created!');
-      router.refresh();
+    .then((response) => {
+      const {newMessages, newConversation} = response.data;
+      setMessages([...newMessages, ...messages]);
+      let newConversations = [...conversations];
+      newConversations = newConversations.filter((conversation) => conversation.id !== newConversation.id);
+      setConversations([newConversation, ...newConversations])
     })
     .catch((err) => {
       console.log(err);

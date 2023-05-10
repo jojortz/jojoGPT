@@ -1,5 +1,4 @@
 import getCurrentUser from "../actions/getCurrentUser";
-import getMessages from "../actions/getMessages";
 import getUserConversations from "../actions/getUserConversations";
 import ClientOnly from "../components/ClientOnly";
 import useUserConversations from "../hooks/useUserConversations";

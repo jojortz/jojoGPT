@@ -1,14 +1,16 @@
 'use client';
 
+import useMessages from "@/app/hooks/useMessages";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import { SafeMessage } from "@/app/types";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import Message from "./Message";
 
 const MessageContainer = () => {
   const userConversations = useUserConversations();
-  const [messages, setMessages] = useState<SafeMessage[]>([]);
+  const { messages, setMessages } = useMessages();
 
   useEffect(() => {
     if (userConversations.selectedConvo.length > 0) {
@@ -24,7 +26,7 @@ const MessageContainer = () => {
         toast.error('Error retrieving messages.');
       })
       .finally(() => {
-        //
+
       })
     }
   }, [userConversations.selectedConvo])
@@ -35,11 +37,14 @@ const MessageContainer = () => {
         h-full
         border-y
         p-5
+        flex
+        flex-col-reverse
+        justify-content
       "
     >
       {messages.length > 0 && (
         messages.map((message) => (
-          <div key={message.id}>{message.body}</div>
+          <Message key={message.id} message={message}/>
         ))
       )}
     </div>

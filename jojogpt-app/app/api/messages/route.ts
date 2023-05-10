@@ -7,13 +7,6 @@ import { useSearchParams } from "next/navigation";
 export async function POST(
   request: Request
 ) {
-  //const userConversations = useUserConversations();
-  //const conversationId = userConversations.selectedConvo;
-
-  // if (!conversationId) {
-  //   return NextResponse.error();
-  // }
-
   const content = await request.json();
 
   const {
@@ -26,9 +19,16 @@ export async function POST(
     conversationId
   };
 
-  console.log('route', data);
+  const newConversation = await prisma.conversation.update({
+    where: {
+      id: conversationId
+    },
+    data: {
+      updatedAt: new Date()
+    }
+  });
 
-  const message = await prisma.message.create({
+  const newMessage = await prisma.message.create({
     data: {
       body,
       sent: true,
@@ -36,7 +36,17 @@ export async function POST(
     }
   });
 
-  return NextResponse.json(message);
+  const newJojoMessage = await prisma.message.create({
+    data: {
+      body: "Dude that\'s fucked up",
+      sent: false,
+      conversationId
+    }
+  });
+
+  const newMessages = [newJojoMessage, newMessage]
+
+  return NextResponse.json({ newMessages, newConversation});
 }
 
 export async function GET(

@@ -12,19 +12,11 @@ import ConversationModal from "../modals/ConversationModal";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
-  conversations: SafeConversation[];
 }
 
 const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
-  currentUser,
-  conversations
+  currentUser
 }) => {
-  const userConversations = useUserConversations();
-
-  useEffect(() => {
-    userConversations.setSelectedConvo(conversations[0].id);
-    userConversations.setConversations(conversations);
-  }, [])
 
   return (
     <div

@@ -1,11 +1,13 @@
 'use client';
 
+import { useEffect } from "react";
 import Button from "../components/Button";
 import Container from "../components/Container"
 import EmptyState from "../components/EmptyState";
 import Heading from "../components/Heading";
 import JojoMessageComponent from "../components/jojoMessage/JojoMessageComponent";
 import useLoginModal from "../hooks/useLoginModal";
+import useUserConversations from "../hooks/useUserConversations";
 import { SafeConversation, SafeUser } from "../types";
 
 interface JojoMessageClientProps {
@@ -18,6 +20,14 @@ const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
   conversations
 }) => {
   const loginModal = useLoginModal();
+  const userConversations = useUserConversations();
+
+  useEffect(() => {
+    if (conversations.length > 0) {
+      userConversations.setConversations(conversations);
+      userConversations.setSelectedConvo(conversations[0].id)
+    }
+  }, [])
 
   if (!currentUser) {
     return (
@@ -47,7 +57,7 @@ const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
           title="jojoMessage"
           subtitle="Text and create new conversations with jojoGPT"
         />
-        <JojoMessageComponent currentUser={currentUser} conversations={conversations} />
+        <JojoMessageComponent currentUser={currentUser}/>
       </div>
     </Container >
 

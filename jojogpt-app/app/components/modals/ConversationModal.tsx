@@ -8,10 +8,12 @@ import { toast } from "react-hot-toast";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Modal from "./Modal";
+import useUserConversations from "@/app/hooks/useUserConversations";
 
 const ConversationModal = () => {
   const conversationModal = useConversationModal();
   const [isLoading, setIsLoading] = useState(false);
+  const { conversations, setConversations, setSelectedConvo } = useUserConversations();
 
   const {
     register,
@@ -28,8 +30,12 @@ const ConversationModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     axios.post('/api/conversations', data)
-      .then(() => {
+      .then((response) => {
         toast.success('Conversation created!')
+        setConversations([response.data, ...conversations])
+        setSelectedConvo(response.data.id)
+        console.log('New convo', response.data)
+
         conversationModal.onClose();
       })
       .catch((err) => {

@@ -13,6 +13,9 @@ export default async function getUserConversations(params: IParams) {
       },
       include: {
         user: true
+      },
+      orderBy: {
+        updatedAt: 'desc',
       }
     });
 
