@@ -51,6 +51,7 @@ const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
           flex
           flex-col
           h-[80vh]
+          max-h-[80vh]
         "
       >
         <Heading

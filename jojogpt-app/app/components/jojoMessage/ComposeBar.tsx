@@ -1,7 +1,7 @@
 'use client';
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -22,20 +22,43 @@ const ComposeBar = () => {
     }
 
     axios.post('/api/messages', data)
-    .then((response) => {
-      const {newMessages, newConversation} = response.data;
-      setMessages([...newMessages, ...messages]);
-      let newConversations = [...conversations];
-      newConversations = newConversations.filter((conversation) => conversation.id !== newConversation.id);
-      setConversations([newConversation, ...newConversations])
-    })
-    .catch((err) => {
-      console.log(err);
-      toast.error('Something went wrong.');
-    }).finally(() => {
-      setIsLoading(false);
-    })
-  }
+      .then((response) => {
+        const { newMessage, newConversation } = response.data;
+        const newMessages = [newMessage, ...messages];
+        setMessages(newMessages);
+        let newConversations = [...conversations];
+        newConversations = newConversations.filter((conversation) => conversation.id !== newConversation.id);
+        setConversations([newConversation, ...newConversations]);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Something went wrong.');
+      }).finally(() => {
+        setIsLoading(false);
+      })
+  };
+
+  useEffect(() => {
+    if (messages.length > 0 && messages[0].sent) [
+      axios.post('/api/jojoMessage', {
+        messages,
+        conversationId: selectedConvo
+      })
+        .then((response) => {
+          console.log('jojoMessage API', response.data);
+          const { newJojoMessages } = response.data;
+          const newMessages = [...newJojoMessages, ...messages];
+          setMessages(newMessages);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error('Something went wrong.')
+        })
+        .finally(() => {
+
+        })
+    ]
+  }, [messages])
 
   const {
     handleSubmit,
@@ -53,15 +76,22 @@ const ComposeBar = () => {
   const body = watch('body');
 
   return (
-    <div className="h-[100px]">
+    <div className="
+      row-span-3
+      h-[50px]
+      flex
+      flex-row
+      items-center
+      pl-5
+      ">
       <form onSubmit={handleSubmit(onSubmit)}>
-       <input
-             id="body"
-             disabled={isLoading}
-             {...register("body", { required: true })}
-             placeholder=" "
-      />
-      <input type="submit"/>
+        <input
+          id="body"
+          disabled={isLoading}
+          {...register("body", { required: true })}
+          placeholder=" "
+        />
+        <input type="submit" />
       </form>
     </div>
   )

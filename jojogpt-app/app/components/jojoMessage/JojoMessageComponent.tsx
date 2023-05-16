@@ -37,9 +37,9 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
       </div>
       <div
         className="
-          flex
-          flex-col
-          h-full
+          grid
+          grid-rows-[50px_1fr_50px]
+          h-[70vh]
           w-full
         "
       >

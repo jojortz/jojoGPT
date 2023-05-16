@@ -13,7 +13,8 @@ const RecipientsBar: React.FC<RecipientsBarProps> = ({
   return (
     <div
       className="
-        h-[80px]
+        row-span-1
+        h-[50px]
         flex
         flex-row
         items-center

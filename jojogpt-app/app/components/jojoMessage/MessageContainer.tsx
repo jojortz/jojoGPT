@@ -34,12 +34,13 @@ const MessageContainer = () => {
   return (
     <div
       className="
-        h-full
         border-y
         p-5
+        row-span-2
         flex
         flex-col-reverse
         justify-content
+        overflow-y-auto
       "
     >
       {messages.length > 0 && (

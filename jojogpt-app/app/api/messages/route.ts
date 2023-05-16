@@ -36,17 +36,7 @@ export async function POST(
     }
   });
 
-  const newJojoMessage = await prisma.message.create({
-    data: {
-      body: "Dude that\'s fucked up",
-      sent: false,
-      conversationId
-    }
-  });
-
-  const newMessages = [newJojoMessage, newMessage]
-
-  return NextResponse.json({ newMessages, newConversation});
+  return NextResponse.json({ newMessage, newConversation});
 }
 
 export async function GET(
