@@ -33,7 +33,7 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
         align-center
         gap-5
         rounded-lg
-        ${ selected && 'bg-imessage-blue'}
+        ${ selected && 'bg-imessage-conversation'}
         cursor-pointer
         group
       `}

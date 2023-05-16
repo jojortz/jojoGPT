@@ -35,6 +35,7 @@ const MessageContainer = () => {
     <div
       className="
         border-y
+        border-black
         p-5
         row-span-2
         flex

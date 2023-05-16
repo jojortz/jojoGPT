@@ -9,7 +9,10 @@ module.exports = {
     extend: {
       colors: {
         'theme-main': '#00a8e8',
-        'imessage-blue': '#2294fb',
+        'imessage-conversation': '#2294fb',
+        'imessage-sent': '#2294fb',
+        'imessage-received': '#b4b4bc',
+        'imessage-bg': '#747474',
       },
     },
   },

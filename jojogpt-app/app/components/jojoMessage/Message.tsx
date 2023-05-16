@@ -12,13 +12,27 @@ const Message: React.FC<MessageProps> = ({
       key={message.id}
       className={`
         flex
-        p-1
-        rounded-sm
         ${message.sent ? 'flex-row-reverse' : 'flex-row'}
-        ${message.sent ? 'bg-red':'bg-white'}
+        ${message.sent ? 'pl-[100px]' : 'pr-[100px]'}
+        p-1
+        text-neutral-100
       `}
     >
+        <div
+      key={message.id}
+      className={`
+        px-5
+        py-3
+        rounded-3xl
+        w-fit
+        h-fit
+        ${message.sent ? 'bg-imessage-sent':'bg-imessage-received'}
+        text-white
+      `}
+    >
+
       {message.body}
+    </div>
     </div>
   )
 };

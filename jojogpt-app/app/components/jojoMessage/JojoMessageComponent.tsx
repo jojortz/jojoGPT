@@ -29,10 +29,11 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
         sm:grid-cols-[200px_minmax(400px,_1fr)]
         md:grid-cols-[300px_minmax(400px,_1fr)]
         mt-5
+        text-neutral-100
       "
     >
       <ConversationModal/>
-      <div className="hidden sm:block">
+      <div className="hidden sm:block rounded-l-xl bg-imessage-bg">
         <ConversationsBar />
       </div>
       <div
@@ -41,6 +42,8 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
           grid-rows-[50px_1fr_50px]
           h-[70vh]
           w-full
+          bg-stone-700
+          rounded-r-[inherit]
         "
       >
         <RecipientsBar title="Conversation 1"/>

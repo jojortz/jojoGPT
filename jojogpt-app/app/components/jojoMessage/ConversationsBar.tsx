@@ -13,6 +13,7 @@ const ConversationsBar = () => {
         w-full
         h-full
         border-r
+        border-black
       "
     >
       <ConversationsHeader/>

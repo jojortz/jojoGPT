@@ -45,7 +45,6 @@ const ComposeBar = () => {
         conversationId: selectedConvo
       })
         .then((response) => {
-          console.log('jojoMessage API', response.data);
           const { newJojoMessages } = response.data;
           const newMessages = [...newJojoMessages, ...messages];
           setMessages(newMessages);
