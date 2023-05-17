@@ -1,15 +1,13 @@
 'use client';
 
-import { SafeConversation, SafeUser } from "@/app/types";
+import { SafeUser } from "@/app/types";
 import RecipientsBar from "./RecipientsBar";
 import MessageContainer from "./MessageContainer";
 import ComposeBar from "./ComposeBar";
 import ConversationsBar from "./ConversationsBar";
-import useUserConversations from "@/app/hooks/useUserConversations";
-import { useEffect } from "react";
-import getUserConversations from "@/app/actions/getUserConversations";
 import ConversationModal from "../modals/ConversationModal";
 import DeleteConversationModal from "../modals/DeleteConversationModal";
+import ConversationPostModal from "../modals/ConversationPostModal";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
@@ -33,6 +31,7 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
     >
       <ConversationModal/>
       <DeleteConversationModal/>
+      <ConversationPostModal/>
       <div className="hidden sm:block rounded-l-[inherit] bg-imessage-bg text-neutral-100">
         <ConversationsBar />
       </div>

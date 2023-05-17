@@ -2,10 +2,11 @@
 
 import useUserConversations from "@/app/hooks/useUserConversations";
 import DeleteConvoButton from "./DeleteConvoButton";
+import NewConvoPostButton from "./NewConvoPostButton";
 
 const RecipientsBar = () => {
   const { conversations, selectedConvo } = useUserConversations();
-  const convoTitle = conversations.find((item) => item.id === selectedConvo)?.title
+  const convoTitle = conversations.find((item) => item.id === selectedConvo)?.title;
   return (
     <div
       className="
@@ -24,11 +25,7 @@ const RecipientsBar = () => {
       <div>
         {convoTitle}
       </div>
-      {convoTitle &&
-        <div>
-          <DeleteConvoButton />
-        </div>
-      }
+      {convoTitle && <NewConvoPostButton/>}
     </div>
   )
 };

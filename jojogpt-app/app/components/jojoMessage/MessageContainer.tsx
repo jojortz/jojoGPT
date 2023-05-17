@@ -43,6 +43,7 @@ const MessageContainer = () => {
 
   return (
     <div
+      id="capture"
       className="
         border-t
         border-black
@@ -50,14 +51,15 @@ const MessageContainer = () => {
         overflow-y-auto
         flex
         flex-col-reverse
+        bg-[inherit]
       "
     >
       <div ref={messagesEndRef} />
-        {messages.length > 0 && (
-          messages.map((message) => (
-            <Message key={message.id} message={message} />
-          ))
-        )}
+      {messages.length > 0 && (
+        messages.map((message) => (
+          <Message key={message.id} message={message} />
+        ))
+      )}
     </div>
   )
 };

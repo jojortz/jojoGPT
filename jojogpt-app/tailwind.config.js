@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'theme-main': '#00a8e8',
+        'theme-main': '#0b84ff',
         'imessage-conversation': '#0b84ff',
         'imessage-sent': '#2a90ff',
         'imessage-received': '#3b3a3e',

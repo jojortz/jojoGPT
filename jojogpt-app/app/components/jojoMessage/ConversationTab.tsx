@@ -1,6 +1,7 @@
 import Avatar from "../Avatar";
 import { useCallback } from "react";
 import useUserConversations from "@/app/hooks/useUserConversations";
+import DeleteConvoButton from "./DeleteConvoButton";
 
 interface ConversationTabProps {
   id: string,
@@ -54,6 +55,7 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
       >
         {title}
       </div>
+      {selected && <DeleteConvoButton />}
     </div >
   )
 };
