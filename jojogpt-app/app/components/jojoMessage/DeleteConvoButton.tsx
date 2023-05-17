@@ -1,9 +1,9 @@
 'use client';
 
-import useConversationModal from "@/app/hooks/useConversationModal";
-import { FiEdit } from "react-icons/fi"
-const NewConvoButton = () => {
-  const conversationModal = useConversationModal();
+import useDeleteConversationModal from "@/app/hooks/useDeleteConversationModal";
+import { IoCloseSharp } from "react-icons/io5";
+const DeleteConvoButton = () => {
+  const deleteConversationModal = useDeleteConversationModal();
 
   return (
     <div
@@ -20,9 +20,9 @@ const NewConvoButton = () => {
         items-center
         justify-center
       "
-      onClick={conversationModal.onOpen}
+      onClick={deleteConversationModal.onOpen}
     >
-      <FiEdit
+      <IoCloseSharp
         size={20}
         className="stroke-1"
       />
@@ -30,4 +30,4 @@ const NewConvoButton = () => {
   )
 };
 
-export default NewConvoButton;
+export default DeleteConvoButton;

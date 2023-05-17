@@ -10,6 +10,7 @@ interface ButtonProps {
   outline?: boolean;
   small?: boolean;
   icon?: IconType;
+  toDelete?: boolean;
 }
 
 const Button:React.FC<ButtonProps> = ({
@@ -18,7 +19,8 @@ const Button:React.FC<ButtonProps> = ({
   disabled,
   outline,
   small,
-  icon: Icon
+  icon: Icon,
+  toDelete
 }) => {
   return (
     <button
@@ -33,6 +35,7 @@ const Button:React.FC<ButtonProps> = ({
         transition
         w-full
         ${outline ? 'bg-white' : 'bg-theme-main'}
+        ${toDelete && 'bg-red-500'}
         ${outline ? 'border-black' : 'bg-theme-main'}
         ${outline ? 'text-black' : 'text-white'}
         ${small ? 'py-1' : 'py-3'}

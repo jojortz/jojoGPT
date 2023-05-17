@@ -1,27 +1,34 @@
 'use client';
 
 import useUserConversations from "@/app/hooks/useUserConversations";
+import DeleteConvoButton from "./DeleteConvoButton";
 
-interface RecipientsBarProps {
-  title: string;
-}
-
-const RecipientsBar: React.FC<RecipientsBarProps> = ({
-  title = "New Conversation"
-}) => {
-  const userConversations = useUserConversations();
+const RecipientsBar = () => {
+  const { conversations, selectedConvo } = useUserConversations();
+  const convoTitle = conversations.find((item) => item.id === selectedConvo)?.title
   return (
     <div
       className="
         row-span-1
-        h-[50px]
         flex
         flex-row
         items-center
-        pl-5
+        justify-between
+        px-5
+        rounded-t-[inherit]
+        sm:rounded-tl-none
+        sm:rounded-tr-[inherit]
+        bg-imessage-recipients
       "
     >
-      {userConversations.conversations.find((item) => item.id === userConversations.selectedConvo)?.title}
+      <div>
+        {convoTitle}
+      </div>
+      {convoTitle &&
+        <div>
+          <DeleteConvoButton />
+        </div>
+      }
     </div>
   )
 };

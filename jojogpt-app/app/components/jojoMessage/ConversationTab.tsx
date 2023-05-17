@@ -32,7 +32,7 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
         items-center
         align-center
         gap-5
-        rounded-lg
+        rounded-md
         ${ selected && 'bg-imessage-conversation'}
         cursor-pointer
         group
@@ -44,6 +44,7 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
       <div
         className={`
           ${!selected && 'border-b'}
+          border-neutral-400
           pl-5
           w-full
           h-full

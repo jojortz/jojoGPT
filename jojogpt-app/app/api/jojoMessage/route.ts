@@ -30,7 +30,7 @@ export async function POST(
   const chatHistory = convertMessageToHistory(messages);
 
   const jojoURL = process.env.JOJO_MESSAGE_URL || "";
-  console.log('message history', chatHistory);
+  console.log(chatHistory)
 
   return axios.post(jojoURL, {
     "chat_history": chatHistory

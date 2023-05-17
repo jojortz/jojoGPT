@@ -9,6 +9,7 @@ import useUserConversations from "@/app/hooks/useUserConversations";
 import { useEffect } from "react";
 import getUserConversations from "@/app/actions/getUserConversations";
 import ConversationModal from "../modals/ConversationModal";
+import DeleteConversationModal from "../modals/DeleteConversationModal";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
@@ -24,16 +25,15 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
         w-full
         border-[1px]
         rounded-xl
-        flex-auto
         sm:grid
         sm:grid-cols-[200px_minmax(400px,_1fr)]
         md:grid-cols-[300px_minmax(400px,_1fr)]
         mt-5
-        text-neutral-100
       "
     >
       <ConversationModal/>
-      <div className="hidden sm:block rounded-l-xl bg-imessage-bg">
+      <DeleteConversationModal/>
+      <div className="hidden sm:block rounded-l-[inherit] bg-imessage-bg text-neutral-100">
         <ConversationsBar />
       </div>
       <div
@@ -42,11 +42,14 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
           grid-rows-[50px_1fr_50px]
           h-[70vh]
           w-full
-          bg-stone-700
-          rounded-r-[inherit]
+          bg-imessage-container
+          rounded-[inherit]
+          sm:rounded-r-[inherit]
+          sm:rounded-l-none
+          text-neutral-100
         "
       >
-        <RecipientsBar title="Conversation 1"/>
+        <RecipientsBar />
         <MessageContainer />
         <ComposeBar />
       </div>

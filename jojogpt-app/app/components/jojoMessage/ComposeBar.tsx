@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import useMessages from "@/app/hooks/useMessages";
+import { BsEmojiWinkFill } from "react-icons/bs";
 
 const ComposeBar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ const ComposeBar = () => {
         let newConversations = [...conversations];
         newConversations = newConversations.filter((conversation) => conversation.id !== newConversation.id);
         setConversations([newConversation, ...newConversations]);
+        reset();
       })
       .catch((err) => {
         console.log(err);
@@ -66,9 +68,10 @@ const ComposeBar = () => {
     formState: {
       errors,
     },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      body: 'New message',
+      body: '',
     }
   });
 
@@ -84,13 +87,35 @@ const ComposeBar = () => {
       pl-5
       ">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          id="body"
-          disabled={isLoading}
-          {...register("body", { required: true })}
-          placeholder=" "
-        />
-        <input type="submit" />
+        <div className="
+          grid
+          grid-cols-[minmax(300px,1200px)_50px]
+          w-full
+        "
+        >
+          <input
+            id="body"
+            disabled={isLoading}
+            {...register("body", { required: true })}
+            placeholder=" "
+            className="
+              w-full
+              rounded-full
+              bg-imessage-container
+              border-[1px]
+              border-neutral-400
+              outline-none
+              px-3
+              py-1
+              col-span-1
+              text-sm
+              focus:border-neutral-300
+            "
+          />
+          <div className="flex items-center justify-center text-neutral-400 cursor-pointer">
+            <BsEmojiWinkFill size={20} className="stroke-0"/>
+          </div>
+        </div>
       </form>
     </div>
   )

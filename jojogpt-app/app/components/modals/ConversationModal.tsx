@@ -20,7 +20,8 @@ const ConversationModal = () => {
     handleSubmit,
     formState: {
       errors,
-    }
+    },
+    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       title: ''
@@ -35,7 +36,7 @@ const ConversationModal = () => {
         setConversations([response.data, ...conversations])
         setSelectedConvo(response.data.id)
         console.log('New convo', response.data)
-
+        reset();
         conversationModal.onClose();
       })
       .catch((err) => {
