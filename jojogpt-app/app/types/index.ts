@@ -22,18 +22,8 @@ export type SafePost = Omit<
   Post,
   "createdAt" | "user"
 > & {
-  createAt: string;
+  createdAt: string;
   user: SafeUser;
-}
-
-export type ConversationPost = {
-  id: string;
-  title: string;
-  author: string;
-  imgSrc: string;
-  likes: string[];
-  description: string;
-  updatedAt: string
 }
 
 

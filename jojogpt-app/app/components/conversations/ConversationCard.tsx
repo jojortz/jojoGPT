@@ -1,12 +1,12 @@
 'use client';
 
-import { ConversationPost, SafeUser } from "@/app/types";
+import { SafePost, SafeUser } from "@/app/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import LikeButton from "../LikeButton";
 
 interface ConversationCardProps {
-  data: ConversationPost;
+  data: SafePost;
   currentUser: SafeUser | null;
 }
 
@@ -36,7 +36,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({
           <Image
             fill
             alt="Listing"
-            src={data.imgSrc}
+            src={data.imageSrc}
             className="
               object-cover
               h-full
@@ -47,20 +47,19 @@ const ConversationCard: React.FC<ConversationCardProps> = ({
           />
         </div>
         <div className="flex flex-row items-center justify-between">
-
           <div className="font-semibold text-lg">
             {data.title}
           </div>
 
           <div className="flex flex-row gap-1">
             <div className="text-neutral-500 text-lg">
-              {data.likes.length}
+              {data.likeIds.length}
             </div>
             <LikeButton active={false} conversationId={data.id} currentUser={currentUser}/>
           </div>
         </div>
         <div className="font-light text-neutral-500">
-          {data.author}
+          {currentUser?.name}
         </div>
       </div>
     </div>

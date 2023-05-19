@@ -10,6 +10,7 @@ const ConversationPostHead: React.FC<ConversationPostHeadProps> = ({
   title,
   imgSrc
 }) => {
+  console.log('new image', imgSrc);
   return (
     <>
       <Heading

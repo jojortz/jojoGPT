@@ -1,13 +1,25 @@
+import React from "react";
 import getConversationPosts from "../actions/getConversationPosts";
 import getCurrentUser from "../actions/getCurrentUser";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ConversationCard from "../components/conversations/ConversationCard";
-import { ConversationPost } from "../types";
+import { SafePost, SafeUser } from "../types";
+import NoConversationsPage from "./NoConversationsPage";
 
-const ConversationsClient = async () => {
-  const conversationPosts = getConversationPosts();
-  const currentUser = await getCurrentUser();
+interface ConversationsClientProps {
+  conversationPosts: SafePost[];
+  currentUser: SafeUser | null;
+}
+
+const ConversationsClient: React.FC<ConversationsClientProps> = ({
+  conversationPosts,
+  currentUser
+}) => {
+
+  if (conversationPosts.length === 0) {
+    return (<NoConversationsPage currentUser={currentUser}/>)
+  }
 
   return (
     <Container>

@@ -2,7 +2,7 @@ import { SafeUser } from "@/app/types";
 import LikeButton from "../LikeButton";
 
 interface ConversationPostInfoProps {
-  author: string;
+  author: string | null | undefined;
   description: string;
   likes: string[];
   conversationId: string;

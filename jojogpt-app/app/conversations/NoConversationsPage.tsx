@@ -1,17 +1,24 @@
 'use client';
+import { useRouter } from "next/navigation";
 import Button from "../components/Button"
 import Container from "../components/Container"
 import EmptyState from "../components/EmptyState"
 import useLoginModal from "../hooks/useLoginModal";
+import { SafeUser } from "../types";
 
 interface NoConversationsPageProps {
-  loggedIn: boolean;
+  currentUser: SafeUser | null;
 }
 
 const NoConversationsPage: React.FC<NoConversationsPageProps> = ({
-  loggedIn
+  currentUser
 }) => {
   const loginModal = useLoginModal();
+  const router = useRouter();
+  let loggedIn = true;
+  if (!currentUser) {
+    loggedIn = false;
+  }
   return (
     <>
       <EmptyState
@@ -22,7 +29,7 @@ const NoConversationsPage: React.FC<NoConversationsPageProps> = ({
         {loggedIn ? (
           <Button
             label="Add conversation"
-            onClick={() => { console.log('add convo modal') }}
+            onClick={() => router.push('/jojoMessage')}
           />
         ) : (
           <Button

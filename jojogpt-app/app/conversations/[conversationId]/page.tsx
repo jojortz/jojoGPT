@@ -11,9 +11,9 @@ interface IParams {
 const ConversationPage = async ({ params }: {
   params: IParams
 }) => {
-  const conversation = getConversationPostsById(params);
+  const conversationPost = await getConversationPostsById(params);
   const currentUser = await getCurrentUser();
-  if (!conversation) {
+  if (!conversationPost) {
     return (
       <ClientOnly>
         <EmptyState
@@ -26,7 +26,7 @@ const ConversationPage = async ({ params }: {
   return (
     <ClientOnly>
       <ConversationPostClient
-        conversation={conversation}
+        conversationPost={conversationPost}
         currentUser={currentUser}
       />
     </ClientOnly>

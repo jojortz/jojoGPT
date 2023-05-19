@@ -3,17 +3,17 @@
 import Container from "@/app/components/Container";
 import ConversationPostHead from "@/app/components/conversations/ConversationPostHead";
 import ConversationPostInfo from "@/app/components/conversations/ConversationPostInfo";
-import { ConversationPost, SafeUser } from "@/app/types";
-import Link from "next/link";
+import { SafePost, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
+import { IoIosArrowBack } from "react-icons/io";
 
 interface ConversationPostClientProps {
-  conversation: ConversationPost;
+  conversationPost: SafePost;
   currentUser: SafeUser | null;
 }
 
 const ConversationPostClient: React.FC<ConversationPostClientProps> = ({
-  conversation,
+  conversationPost,
   currentUser
 }) => {
   const router = useRouter();
@@ -26,20 +26,25 @@ const ConversationPostClient: React.FC<ConversationPostClientProps> = ({
             text-neutral-600
             cursor-pointer
             hover:text-neutral-400
+            flex
+            flex-row
+            gap-1
+            justify-end
+            items-center
           "
         >
-          {'<'} Back to Conversations
+          <IoIosArrowBack/>Browse more conversations
           </div>
         <ConversationPostHead
-          title={conversation.title}
-          imgSrc={conversation.imgSrc}
+          title={conversationPost.title}
+          imgSrc={conversationPost.imageSrc}
         />
         <ConversationPostInfo
-          author={conversation.author}
-          likes={conversation.likes}
-          description={conversation.description}
+          author={currentUser?.name}
+          likes={conversationPost.likeIds}
+          description={conversationPost.description}
           currentUser={currentUser}
-          conversationId={conversation.id}
+          conversationId={conversationPost.id}
         />
       </div>
     </Container>

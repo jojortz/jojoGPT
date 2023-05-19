@@ -1,14 +1,13 @@
-import { ConversationPost } from "../types";
 import getConversationPosts from "./getConversationPosts";
 
 interface IParams {
   conversationId?: string;
 }
 
-export default function getConversationPostsById(
+export default async function getConversationPostsById(
   params: IParams
 ) {
-  const conversations = getConversationPosts();
+  const conversations = await getConversationPosts();
   const { conversationId } = params;
   const conversation = conversations.find((convo) => convo.id === conversationId);
 

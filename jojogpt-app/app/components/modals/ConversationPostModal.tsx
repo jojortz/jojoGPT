@@ -1,6 +1,5 @@
 'use client';
 
-import useConversationModal from "@/app/hooks/useConversationModal";
 import axios from "axios";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -31,21 +30,19 @@ const ConversationPostModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    // axios.post('/api/conversations', data)
-    //   .then((response) => {
-        toast.success('Conversation created!')
-    //     setConversations([response.data, ...conversations])
-    //     setSelectedConvo(response.data.id)
-    //     console.log('New convo', response.data)
-    //     reset();
+    axios.post('/api/posts', {...data, imageSrc: conversationPostModal.photoUrl})
+      .then((response) => {
+        toast.success('Conversation Post created!')
+        console.log('New post', response.data)
+        reset();
         conversationPostModal.onClose();
-      // })
-      // .catch((err) => {
-      //   toast.error('Something went wrong.');
-      // })
-      // .finally(() => {
+      })
+      .catch((err) => {
+        toast.error('Something went wrong.');
+      })
+      .finally(() => {
         setIsLoading(false)
-      // })
+      })
   }
 
   const bodyContent = (
