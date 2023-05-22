@@ -10,7 +10,6 @@ const ConversationPostHead: React.FC<ConversationPostHeadProps> = ({
   title,
   imgSrc
 }) => {
-  console.log('new image', imgSrc);
   return (
     <>
       <Heading
@@ -18,20 +17,22 @@ const ConversationPostHead: React.FC<ConversationPostHeadProps> = ({
       />
       <div
         className="
-          w-full
-          h-[60vh]
-          overflow-hidden
-          rounded-xl
-          relative
-        "
+            w-full
+            h-[55vh]
+            overflow-hidden
+            rounded-xl
+            relative
+            border-[1px]
+            shadow-md
+          "
       >
         <Image
           alt="Image"
           src={imgSrc}
           fill
-          className="object-cover w-full"
+          className="object-contain rounded-xl"
         />
-        </div>
+      </div>
     </>
   )
 };

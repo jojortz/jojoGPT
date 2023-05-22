@@ -59,7 +59,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({
           </div>
         </div>
         <div className="font-light text-neutral-500">
-          {currentUser?.name}
+          {data.user.name}
         </div>
       </div>
     </div>

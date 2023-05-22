@@ -28,6 +28,9 @@ const AboutPage: React.FC<AboutPageProps> = ({
         className="
           w-full
           h-[40vh]
+          md:h-[45vh]
+          lg: h-[50vh]
+          xl:h-[55vh]
           overflow-hidden
           rounded-xl
           relative
