@@ -2,39 +2,38 @@
 
 import React from "react";
 import { SafeUser } from "../types";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-//import useFavorite from "../hooks/useFavorite";
+import { AiFillHeart, AiFillLike, AiOutlineHeart, AiOutlineLike } from "react-icons/ai";
+import useLike from "../hooks/useLike";
 
 interface LikeButtonProps {
-  conversationId: string;
+  conversationPostId: string;
   currentUser?: SafeUser | null;
   active: boolean;
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({
-  conversationId,
+  conversationPostId,
   currentUser,
   active
 }) => {
-  // const {hasFavorited, toggleFavorite} = useFavorite({
-  //   listingId,
-  //   currentUser
-  // });
-  const hasFavorited = true;
+  const {hasLiked, toggleLike } = useLike({
+    conversationPostId,
+    currentUser
+  });
 
   return (
     <>
     {
       active ? (
         <div
-        onClick={() => { console.log('Liked!') }}
+        onClick={toggleLike}
         className="
         hover:opacity-80
         transition
         cursor-pointer
         "
         >
-          <AiOutlineHeart
+          <AiOutlineLike
             size={28}
             className="
             fill-white
@@ -43,15 +42,15 @@ const LikeButton: React.FC<LikeButtonProps> = ({
             -right-[2px]
             "
             />
-          <AiFillHeart
+          <AiFillLike
             size={24}
             className={
-              hasFavorited ? 'fill-rose-500' : 'fill-neutral-500/70'
+              hasLiked ? 'fill-theme-main' : 'fill-neutral-500/70'
             }
             />
         </div >
         ) : (
-          <AiFillHeart
+          <AiFillLike
           size={24}
           className='fill-neutral-500/70'
           />

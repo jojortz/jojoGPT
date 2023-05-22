@@ -1,17 +1,17 @@
-import getConversationPostsById from "@/app/actions/getConversationPostsById";
+import getConversationPostById from "@/app/actions/getConversationPostById";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import ClientOnly from "@/app/components/ClientOnly";
 import EmptyState from "@/app/components/EmptyState";
 import ConversationPostClient from "./ConversationPostClient";
 
 interface IParams {
-  conversationId?: string;
+  conversationPostId?: string;
 }
 
 const ConversationPage = async ({ params }: {
   params: IParams
 }) => {
-  const conversationPost = await getConversationPostsById(params);
+  const conversationPost = await getConversationPostById(params);
   const currentUser = await getCurrentUser();
   if (!conversationPost) {
     return (

@@ -44,7 +44,7 @@ const ConversationPostClient: React.FC<ConversationPostClientProps> = ({
           likes={conversationPost.likeIds}
           description={conversationPost.description}
           currentUser={currentUser}
-          conversationId={conversationPost.id}
+          conversationPostId={conversationPost.id}
         />
       </div>
     </Container>

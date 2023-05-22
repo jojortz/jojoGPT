@@ -5,7 +5,7 @@ interface ConversationPostInfoProps {
   author: string | null | undefined;
   description: string;
   likes: string[];
-  conversationId: string;
+  conversationPostId: string;
   currentUser: SafeUser | null;
 }
 
@@ -13,7 +13,7 @@ const ConversationPostInfo: React.FC<ConversationPostInfoProps> = ({
   author,
   description,
   likes,
-  conversationId,
+  conversationPostId,
   currentUser,
 }) => {
   return (
@@ -22,15 +22,15 @@ const ConversationPostInfo: React.FC<ConversationPostInfoProps> = ({
         <div className="font-semibold">
           Posted by {author}
         </div>
-        <div className="flex flex-row gap-1 items-center">
+        <div className="flex flex-row gap-1 text-lg">
+          <div>
+            {likes.length}
+          </div>
           <LikeButton
-            conversationId={conversationId}
+            conversationPostId={conversationPostId}
             currentUser={currentUser}
             active
             />
-            <div>
-              {likes.length}
-            </div>
         </div>
       </div>
       <div>{description}</div>

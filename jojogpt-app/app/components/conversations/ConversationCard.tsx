@@ -55,7 +55,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({
             <div className="text-neutral-500 text-lg">
               {data.likeIds.length}
             </div>
-            <LikeButton active={false} conversationId={data.id} currentUser={currentUser}/>
+            <LikeButton active={false} conversationPostId={data.id} currentUser={currentUser}/>
           </div>
         </div>
         <div className="font-light text-neutral-500">
