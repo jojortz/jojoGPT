@@ -2,6 +2,8 @@ import Avatar from "../Avatar";
 import { useCallback } from "react";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import DeleteConvoButton from "./DeleteConvoButton";
+import useMessageView from "@/app/hooks/useMessageView";
+import { shallow } from 'zustand/shallow';
 
 interface ConversationTabProps {
   id: string,
@@ -14,11 +16,16 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
   title,
   selected,
 }) => {
-  const userConversations = useUserConversations();
+  const {setSelectedConvo} = useUserConversations();
+  const {messageView, setMessageView} = useMessageView(
+    (state) => ({ messageView: state.messageView, setMessageView: state.setMessageView }),
+    shallow
+  )
 
   const onClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    userConversations.setSelectedConvo(e?.currentTarget?.id);
-  }, [userConversations.setSelectedConvo]);
+    setSelectedConvo(e?.currentTarget?.id);
+    setMessageView();
+  }, [setSelectedConvo, setMessageView]);
 
   return (
     <div

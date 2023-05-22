@@ -8,6 +8,7 @@ import ConversationsBar from "./ConversationsBar";
 import ConversationModal from "../modals/ConversationModal";
 import DeleteConversationModal from "../modals/DeleteConversationModal";
 import ConversationPostModal from "../modals/ConversationPostModal";
+import useMessageView from "@/app/hooks/useMessageView";
 
 interface JojoMessageComponentProps {
   currentUser: SafeUser | null;
@@ -16,6 +17,7 @@ interface JojoMessageComponentProps {
 const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
   currentUser
 }) => {
+  const {messageView} = useMessageView();
 
   return (
     <div
@@ -24,19 +26,30 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
         border-[1px]
         rounded-xl
         sm:grid
-        sm:grid-cols-[200px_minmax(400px,_1fr)]
-        md:grid-cols-[300px_minmax(400px,_1fr)]
+        sm:grid-cols-[300px_minmax(400px,_1fr)]
+        md:grid-cols-[400px_minmax(400px,_1fr)]
         mt-5
       "
     >
       <ConversationModal/>
       <DeleteConversationModal/>
       <ConversationPostModal/>
-      <div className="hidden sm:block rounded-l-[inherit] bg-imessage-bg text-neutral-100">
+      <div className={`
+        ${messageView && "hidden"}
+        rounded-[inherit]
+        sm:block
+        sm:rounded-l-[inherit]
+        sm:rounded-r-none
+        bg-imessage-bg
+        text-neutral-100
+        h-[70vh]
+        `}>
         <ConversationsBar />
       </div>
       <div
-        className="
+        className={`
+        ${!messageView && "hidden"}
+          sm:grid
           grid
           grid-rows-[50px_1fr_50px]
           h-[70vh]
@@ -46,7 +59,7 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
           sm:rounded-r-[inherit]
           sm:rounded-l-none
           text-neutral-100
-        "
+        `}
       >
         <RecipientsBar />
         <MessageContainer />

@@ -12,8 +12,8 @@ const ConversationsBar = () => {
       className="
         w-full
         h-full
-        border-r
-        border-black
+        sm:border-r
+        sm:border-black
       "
     >
       <ConversationsHeader/>
