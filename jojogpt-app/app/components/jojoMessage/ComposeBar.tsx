@@ -59,7 +59,7 @@ const ComposeBar = () => {
 
         })
     ]
-  }, [messages])
+  }, [messages, selectedConvo, setMessages]);
 
   const {
     handleSubmit,

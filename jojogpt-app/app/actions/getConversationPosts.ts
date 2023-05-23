@@ -1,9 +1,22 @@
 import prisma from "@/app/libs/prismadb";
 
+interface IParams {
+  userId?: string;
+}
 
-export default async function getConversationPosts() {
+export default async function getConversationPosts(
+  params: IParams
+) {
   try {
+    const { userId } = params;
+    const query: any = {};
+
+    if (userId) {
+      query.userId = userId;
+    }
+
     const conversationPosts = await prisma.post.findMany({
+      where: query,
       include: {
         user: true
       },

@@ -1,11 +1,12 @@
+'use client';
+
 import React from "react";
-import getConversationPosts from "../actions/getConversationPosts";
-import getCurrentUser from "../actions/getCurrentUser";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ConversationCard from "../components/conversations/ConversationCard";
 import { SafePost, SafeUser } from "../types";
 import NoConversationsPage from "./NoConversationsPage";
+import { useRouter } from "next/navigation";
 
 interface ConversationsClientProps {
   conversationPosts: SafePost[];
@@ -16,7 +17,7 @@ const ConversationsClient: React.FC<ConversationsClientProps> = ({
   conversationPosts,
   currentUser
 }) => {
-
+  const router = useRouter();
   if (conversationPosts.length === 0) {
     return (<NoConversationsPage currentUser={currentUser}/>)
   }
@@ -42,7 +43,7 @@ const ConversationsClient: React.FC<ConversationsClientProps> = ({
       >
         {
           conversationPosts.map((post) => (
-            <ConversationCard data={post} currentUser={currentUser}/>
+            <ConversationCard key={post.id} data={post} currentUser={currentUser} onClick={() => router.push(`/conversations/${post.id}`)}/>
           ))
         }
       </div>

@@ -39,7 +39,7 @@ const MessageContainer = () => {
 
         })
     }
-  }, [userConversations.selectedConvo])
+  }, [userConversations.selectedConvo, setMessages])
 
   return (
     <div

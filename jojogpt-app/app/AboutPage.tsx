@@ -55,7 +55,7 @@ const AboutPage: React.FC<AboutPageProps> = ({
         </span>
         <span>
           To see some fun examples of conversations, check out the Conversations page.
-          Once you've logged in, check out the JojoMessage page to message JojoGPT.
+          Once you&apos;ve logged in, check out the JojoMessage page to message JojoGPT.
         </span>
       </div>
       {!currentUser && (

@@ -8,17 +8,17 @@ import LikeButton from "../LikeButton";
 interface ConversationCardProps {
   data: SafePost;
   currentUser: SafeUser | null;
+  onClick?: () => void;
 }
 
 const ConversationCard: React.FC<ConversationCardProps> = ({
   data,
-  currentUser
+  currentUser,
+  onClick
 }) => {
-  const router = useRouter();
-
   return (
     <div
-      onClick={() => router.push(`/conversations/${data.id}`)}
+      onClick={onClick}
       className="
         col-span-1 cursor-pointer group
       "

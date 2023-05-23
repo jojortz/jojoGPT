@@ -7,7 +7,7 @@ import NoConversationsPage from "./NoConversationsPage";
 const ConversationsPage = async () => {
   const conversations = true;
   const currentUser = await getCurrentUser();
-  const conversationPosts = await getConversationPosts();
+  const conversationPosts = await getConversationPosts({});
 
   return (
     <ClientOnly>
