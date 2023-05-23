@@ -1,0 +1,4 @@
+Flask==2.0.1
+tiktoken==0.3.3
+torch==2.0.1
+transformers==4.29.2
