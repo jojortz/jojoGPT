@@ -1,19 +1,18 @@
 'use client';
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import useMessages from "@/app/hooks/useMessages";
 import { BsEmojiWinkFill } from "react-icons/bs";
 
 const ComposeBar = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
   const { selectedConvo, conversations, setConversations } = useUserConversations();
   const { messages, setMessages } = useMessages();
+  const inputRef = useRef<null | HTMLInputElement>(null)
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -40,6 +39,22 @@ const ComposeBar = () => {
       })
   };
 
+
+  const {
+    handleSubmit,
+    watch,
+    register,
+    formState: {
+      errors,
+    },
+    reset,
+    setFocus
+  } = useForm<FieldValues>({
+    defaultValues: {
+      body: '',
+    }
+  });
+
   useEffect(() => {
     if (messages.length > 0 && messages[0].sent) [
       axios.post('/api/jojoMessage', {
@@ -56,24 +71,10 @@ const ComposeBar = () => {
           toast.error('Something went wrong.')
         })
         .finally(() => {
-
+          setTimeout(() => setFocus('body'), 300);
         })
     ]
-  }, [messages, selectedConvo, setMessages]);
-
-  const {
-    handleSubmit,
-    watch,
-    register,
-    formState: {
-      errors,
-    },
-    reset,
-  } = useForm<FieldValues>({
-    defaultValues: {
-      body: '',
-    }
-  });
+  }, [messages, selectedConvo, setMessages, setFocus]);
 
   const body = watch('body');
 
@@ -94,6 +95,7 @@ const ComposeBar = () => {
         "
         >
           <input
+            autoFocus
             id="body"
             disabled={isLoading}
             {...register("body", { required: true })}
@@ -113,7 +115,7 @@ const ComposeBar = () => {
             "
           />
           <div className="flex items-center justify-center text-neutral-400 cursor-pointer">
-            <BsEmojiWinkFill size={20} className="stroke-0"/>
+            <BsEmojiWinkFill size={20} className="stroke-0" />
           </div>
         </div>
       </form>
