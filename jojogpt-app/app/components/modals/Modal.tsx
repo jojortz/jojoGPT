@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 
@@ -34,10 +34,8 @@ const Modal: React.FC<ModalProps> = ({
   toDelete
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
+  const selectRef = useRef<null | HTMLInputElement>(null)
 
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (disabled) return;
@@ -46,6 +44,23 @@ const Modal: React.FC<ModalProps> = ({
       onClose();
     }, 300);
   }, [disabled, onClose]);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+    const checkIfClickedOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        handleClose();
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [isOpen, handleClose]);
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
@@ -80,6 +95,7 @@ const Modal: React.FC<ModalProps> = ({
       "
       >
         <div
+              ref={selectRef}
           className="
           relative
           w-full
