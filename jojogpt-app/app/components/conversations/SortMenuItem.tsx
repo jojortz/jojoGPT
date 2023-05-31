@@ -1,14 +1,13 @@
 'use client';
+import { IconType } from "react-icons";
 
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
-
-interface MenuItemProps {
+interface SortMenuItemProps {
   onClick: () => void;
   label: string;
-  icon?: Icon;
+  icon?: IconType;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
+const SortMenuItem: React.FC<SortMenuItemProps> = ({
   onClick,
   label,
   icon: Icon
@@ -20,18 +19,22 @@ const MenuItem: React.FC<MenuItemProps> = ({
       hover:bg-neutral-100
       transition
       font-semibold
+      text-base
       flex
       flex-row
-      justify-between
+      gap-3
+      justify-start
+      align center
+      text-neutral-700/70
     "
       onClick={onClick}
     >
+      {Icon && (<Icon size={18}/>)}
       <div>
         {label}
       </div>
-      {/* {Icon && <Icon/>} */}
     </div>
   )
 };
 
-export default MenuItem;
+export default SortMenuItem;

@@ -1,12 +1,14 @@
 'use client';
 
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ConversationCard from "../components/conversations/ConversationCard";
 import { SafePost, SafeUser } from "../types";
 import NoConversationsPage from "./NoConversationsPage";
 import { useRouter } from "next/navigation";
+import SortMenu from "../components/conversations/SortMenu";
+import useConversationPosts from "../hooks/useConversationPosts";
 
 interface ConversationsClientProps {
   conversationPosts: SafePost[];
@@ -18,16 +20,27 @@ const ConversationsClient: React.FC<ConversationsClientProps> = ({
   currentUser
 }) => {
   const router = useRouter();
+  const {posts, setPosts} = useConversationPosts();
+
+  useEffect(() => {
+    if (conversationPosts.length > 0) {
+      setPosts(conversationPosts);
+    }
+  }, []);
+
   if (conversationPosts.length === 0) {
-    return (<NoConversationsPage currentUser={currentUser}/>)
+    return (<NoConversationsPage currentUser={currentUser} />)
   }
 
   return (
     <Container>
-      <Heading
-        title="Conversations"
-        subtitle="Browse, like, and post your favorite conversations with JojoGPT"
-      />
+      <div  className="flex flex-row justify-between">
+        <Heading
+          title="Conversations"
+          subtitle="Browse, like, and post your favorite conversations with JojoGPT"
+        />
+        <SortMenu />
+      </div>
       <div
         className="
           mt-10
@@ -42,8 +55,8 @@ const ConversationsClient: React.FC<ConversationsClientProps> = ({
         "
       >
         {
-          conversationPosts.map((post) => (
-            <ConversationCard key={post.id} data={post} currentUser={currentUser} onClick={() => router.push(`/conversations/${post.id}`)}/>
+          posts.map((post) => (
+            <ConversationCard key={post.id} data={post} currentUser={currentUser} onClick={() => router.push(`/conversations/${post.id}`)} />
           ))
         }
       </div>
