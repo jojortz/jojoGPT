@@ -54,11 +54,13 @@ const JojoMessageClient: React.FC<JojoMessageClientProps> = ({
           max-h-[80vh]
         "
       >
-        <Heading
-          title="jojoMessage"
-          subtitle="Text and create new conversations with jojoGPT"
-        />
-        <JojoMessageComponent currentUser={currentUser}/>
+        <div className="hidden sm:block">
+          <Heading
+            title="jojoMessage"
+            subtitle="Text and create new conversations with jojoGPT"
+          />
+        </div>
+        <JojoMessageComponent currentUser={currentUser} />
       </div>
     </Container >
 

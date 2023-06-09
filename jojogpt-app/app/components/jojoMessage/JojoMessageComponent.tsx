@@ -42,7 +42,8 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
         sm:rounded-r-none
         bg-imessage-bg
         text-neutral-100
-        h-[70vh]
+        h-[80vh]
+        sm:h-[70vh]
         `}>
         <ConversationsBar />
       </div>
@@ -52,7 +53,8 @@ const JojoMessageComponent: React.FC<JojoMessageComponentProps> = ({
           sm:grid
           grid
           grid-rows-[50px_1fr_50px]
-          h-[70vh]
+          h-[80vh]
+          sm:h-[70vh]
           w-full
           bg-imessage-container
           rounded-[inherit]
