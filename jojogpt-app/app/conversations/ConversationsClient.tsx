@@ -37,7 +37,7 @@ const ConversationsClient: React.FC<ConversationsClientProps> = ({
       <div  className="flex flex-row justify-between">
         <Heading
           title="Conversations"
-          subtitle="Browse, like, and post your favorite conversations with JojoGPT"
+          subtitle="Browse and like your favorite conversations with JojoGPT"
         />
         <SortMenu />
       </div>
