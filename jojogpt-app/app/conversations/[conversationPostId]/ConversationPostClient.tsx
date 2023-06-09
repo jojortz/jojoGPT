@@ -41,6 +41,7 @@ const ConversationPostClient: React.FC<ConversationPostClientProps> = ({
         />
         <ConversationPostInfo
           author={conversationPost.user.name}
+          image={conversationPost.user.image}
           likes={conversationPost.likeIds}
           description={conversationPost.description}
           currentUser={currentUser}

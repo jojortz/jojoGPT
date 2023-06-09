@@ -4,6 +4,7 @@ import { SafePost, SafeUser } from "@/app/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import LikeButton from "../LikeButton";
+import Avatar from "../Avatar";
 
 interface ConversationCardProps {
   data: SafePost;
@@ -55,11 +56,14 @@ const ConversationCard: React.FC<ConversationCardProps> = ({
             <div className="text-neutral-500 text-lg">
               {data.likeIds.length}
             </div>
-            <LikeButton active={false} conversationPostId={data.id} currentUser={currentUser}/>
+            <LikeButton active={false} conversationPostId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-light text-neutral-500">
-          {data.user.name}
+        <div className="flex flex-row gap-2 items-center">
+          <Avatar src={data.user.image} />
+          <div className="font-light text-neutral-500">
+            {data.user.name}
+          </div>
         </div>
       </div>
     </div>

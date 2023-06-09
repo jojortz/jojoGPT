@@ -1,8 +1,10 @@
 import { SafeUser } from "@/app/types";
 import LikeButton from "../LikeButton";
+import Avatar from "../Avatar";
 
 interface ConversationPostInfoProps {
   author: string | null | undefined;
+  image: string | null | undefined;
   description: string;
   likes: string[];
   conversationPostId: string;
@@ -11,6 +13,7 @@ interface ConversationPostInfoProps {
 
 const ConversationPostInfo: React.FC<ConversationPostInfoProps> = ({
   author,
+  image,
   description,
   likes,
   conversationPostId,
@@ -19,8 +22,11 @@ const ConversationPostInfo: React.FC<ConversationPostInfoProps> = ({
   return (
     <div className="flex flex-col gap-5 pt-5">
       <div className="flex flex-row items-center justify-between">
-        <div className="font-semibold">
-          Posted by {author}
+        <div className="flex flex-row items-center gap-2">
+          <div className="font-semibold">
+            Posted by {author}
+          </div>
+          <Avatar src={image}/>
         </div>
         <div className="flex flex-row gap-1 text-lg">
           <div>
@@ -30,7 +36,7 @@ const ConversationPostInfo: React.FC<ConversationPostInfoProps> = ({
             conversationPostId={conversationPostId}
             currentUser={currentUser}
             active
-            />
+          />
         </div>
       </div>
       <div>{description}</div>

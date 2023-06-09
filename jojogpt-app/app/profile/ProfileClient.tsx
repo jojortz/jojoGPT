@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Avatar from "../components/Avatar";
 
 
 interface ProfileClientProps {
@@ -54,6 +55,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({
     setIsLoading(true);
     axios.patch(`/api/profile/${currentUser?.id}`, data)
       .then((response) => {
+        router.refresh();
         toast.success('Profile updated!')
         reset();
         setCustomValue('name', response.data.name);
@@ -89,13 +91,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({
           </div>
           <div className="flex flex-col sm:flex-row gap-10 items-center justify-start">
             <div className="flex-grow flex flex-row items-center justify-center">
-              <Image
-                src={currentUser?.image || '/images/placeholder.jpeg'}
-                width={150}
-                height={150}
-                alt="Profile picture"
-                className="rounded-full"
-              />
+              <Avatar src={currentUser?.image} dim={200}/>
             </div>
             <ImageUpload
               value={imageSrc}

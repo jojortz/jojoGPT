@@ -38,7 +38,6 @@ export async function PATCH(
     }
   }
 
-  console.log('New name', name, 'New Image', imageSrc);
   const post = await prisma.user.update({
     where: {
       id: userId
