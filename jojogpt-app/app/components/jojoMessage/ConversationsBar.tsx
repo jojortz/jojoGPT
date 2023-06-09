@@ -14,14 +14,19 @@ const ConversationsBar = () => {
         h-full
         sm:border-r
         sm:border-black
+        flex
+        flex-col
+        pb-4
       "
     >
-      <ConversationsHeader/>
-      {
-        userConversations.conversations.map((item) => (
-          <ConversationTab id={item.id} key={item.id} title={item.title} selected={userConversations.selectedConvo === item.id}/>
-        ))
-      }
+      <ConversationsHeader />
+      <div className="overflow-y-auto flex-grow">
+        {
+          userConversations.conversations.map((item) => (
+            <ConversationTab id={item.id} key={item.id} title={item.title} selected={userConversations.selectedConvo === item.id} />
+          ))
+        }
+      </div>
     </div>
   )
 };
