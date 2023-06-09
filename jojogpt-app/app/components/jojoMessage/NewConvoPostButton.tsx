@@ -5,6 +5,7 @@ import { CiShare1 } from "react-icons/ci"
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import * as htmlToImage from 'html-to-image';
+import IconButton from "../IconButton";
 
 const NewConvoPostButton = () => {
 
@@ -25,27 +26,10 @@ const NewConvoPostButton = () => {
 };
 
   return (
-    <div
-      className="
-        cursor-pointer
-        text-neutral-400
-        rounded-md
-        hover:bg-neutral-100
-        hover:bg-opacity-25
-        w-[30px]
-        h-[30px]
-        flex
-        flex-row
-        items-center
-        justify-center
-      "
+    <IconButton
+      icon={CiShare1}
       onClick={captureShot}
-    >
-      <CiShare1
-        size={20}
-        className="stroke-1"
-      />
-    </div>
+    />
   )
 };
 

@@ -7,12 +7,34 @@ import { toast } from "react-hot-toast";
 import useUserConversations from "@/app/hooks/useUserConversations";
 import useMessages from "@/app/hooks/useMessages";
 import { BsEmojiWinkFill } from "react-icons/bs";
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react';
+import IconButton from "../IconButton";
+import EmojiButton from "./EmojiButton";
 
 const ComposeBar = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [emojiOpen, setEmojiOpen] = useState(false);
   const { selectedConvo, conversations, setConversations } = useUserConversations();
   const { messages, setMessages } = useMessages();
-  const inputRef = useRef<null | HTMLInputElement>(null)
+  const selectRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    setEmojiOpen(emojiOpen);
+    const checkIfClickedOutside = (event: MouseEvent) => {
+      if (
+        emojiOpen &&
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setEmojiOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [emojiOpen, setEmojiOpen]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -48,7 +70,9 @@ const ComposeBar = () => {
       errors,
     },
     reset,
-    setFocus
+    setFocus,
+    setValue,
+    getValues
   } = useForm<FieldValues>({
     defaultValues: {
       body: '',
@@ -114,8 +138,16 @@ const ComposeBar = () => {
               focus:border-neutral-300
             "
           />
-          <div className="flex items-center justify-center text-neutral-400 cursor-pointer">
-            <BsEmojiWinkFill size={20} className="stroke-0" />
+          <div className="flex items-center justify-center text-neutral-400 cursor-pointer relative">
+            <EmojiButton onClick={() => setEmojiOpen(!emojiOpen)}/>
+            {emojiOpen &&
+              <div className="absolute bottom-10 right-10" ref={selectRef}>
+                <Picker data={data} onEmojiSelect={(emoji: any) => {
+                  const text = getValues('body') + emoji.native;
+                  setValue('body', text);
+                }} />
+              </div>
+            }
           </div>
         </div>
       </form>
