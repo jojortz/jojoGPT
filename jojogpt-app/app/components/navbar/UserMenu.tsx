@@ -99,6 +99,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 />
                 <hr />
                 <MenuItem onClick={() => {
+                    router.push('/profile');
+                    toggleOpen();
+                }}
+                  label="Profile"
+                />
+                <MenuItem onClick={() => {
                   signOut({
                     callbackUrl: `${window.location.origin}`
                   });
