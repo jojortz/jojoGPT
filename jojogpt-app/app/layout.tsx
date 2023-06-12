@@ -11,6 +11,9 @@ import getCurrentUser from "./actions/getCurrentUser"
 export const metadata = {
   title: 'JojoGPT',
   description: 'Text the jojoGPT AI',
+  icons: {
+    icon: '/images/favicon.ico',
+  }
 }
 
 const font = Nunito({
