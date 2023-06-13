@@ -1,4 +1,4 @@
-const stringToIntHash: (str: string, upperBound: number, lowerBound: number) => number = function (
+function stringToIntHash (
   str: string,
   upperBound: number,
   lowerBound: number,

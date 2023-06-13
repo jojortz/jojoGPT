@@ -41,6 +41,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               transition
               border-dashed
               border-2
+              rounded-xl
               p-20
               border-neutral-300
               flex

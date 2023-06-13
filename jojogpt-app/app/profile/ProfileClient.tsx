@@ -91,7 +91,15 @@ const ProfileClient: React.FC<ProfileClientProps> = ({
           </div>
           <div className="flex flex-col sm:flex-row gap-10 items-center justify-start">
             <div className="flex-grow flex flex-row items-center justify-center h-full">
-              <Avatar src={currentUser?.image} dim={200}/>
+              <div className={`h-[225px] w-[225px] relative`}>
+                <Image
+                  src={currentUser?.image || '/images/placeholder.jpeg'}
+                  alt="Profile Picture"
+                  className={`rounded-full`}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
             <ImageUpload
               value={imageSrc}
