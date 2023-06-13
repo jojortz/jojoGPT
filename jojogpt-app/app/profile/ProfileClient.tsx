@@ -90,7 +90,7 @@ const ProfileClient: React.FC<ProfileClientProps> = ({
             Profile Picture
           </div>
           <div className="flex flex-col sm:flex-row gap-10 items-center justify-start">
-            <div className="flex-grow flex flex-row items-center justify-center">
+            <div className="flex-grow flex flex-row items-center justify-center w-[400px]">
               <Avatar src={currentUser?.image} dim={200}/>
             </div>
             <ImageUpload

@@ -4,6 +4,7 @@ import useUserConversations from "@/app/hooks/useUserConversations";
 import DeleteConvoButton from "./DeleteConvoButton";
 import useMessageView from "@/app/hooks/useMessageView";
 import { shallow } from 'zustand/shallow';
+import stringToIntHash from "@/app/helpers/stringToIntHash";
 
 interface ConversationTabProps {
   id: string,
@@ -16,8 +17,8 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
   title,
   selected,
 }) => {
-  const {setSelectedConvo} = useUserConversations();
-  const {messageView, setMessageView} = useMessageView(
+  const { setSelectedConvo } = useUserConversations();
+  const { messageView, setMessageView } = useMessageView(
     (state) => ({ messageView: state.messageView, setMessageView: state.setMessageView }),
     shallow
   )
@@ -41,14 +42,14 @@ const ConversationTab: React.FC<ConversationTabProps> = ({
         align-center
         gap-5
         rounded-md
-        ${ selected && 'bg-imessage-conversation'}
+        ${selected && 'bg-imessage-conversation'}
         cursor-pointer
         group
       `}
     >
-
-      <Avatar />
-
+      <div className="w-[45px]">
+        <Avatar src={`/images/profile_pic_${stringToIntHash(id, 6, 0)}.jpg`}/>
+      </div>
       <div
         className={`
           ${!selected && 'border-b'}
